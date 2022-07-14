@@ -1,0 +1,94 @@
+--2. Crear una tabla “post”, con los atributos id, nombre de usuario, fecha de creación, contenido y descripción
+create table posts(
+  id serial primary key,
+  nombre_usuario varchar (255) not null,
+  fecha_creacion date not null,
+  contenido varchar (255) not null,
+  descripcion varchar (255) not null
+);
+
+--3. Insertar 3 post, 2 para el usuario "Pamela" y uno para "Carlos".
+insert into posts (nombre_usuario, fecha_creacion , contenido , descripcion)
+  values ('Pamela', '2022-01-28', 'contenido 1', 'descripcion1');
+
+insert into posts (nombre_usuario, fecha_creacion , contenido , descripcion)
+  values ('Pamela', '2022-01-28', 'contenido 2', 'descripcion2');
+  
+insert into posts (nombre_usuario, fecha_creacion , contenido , descripcion)
+  values ('Carlos', '2022-01-20', 'contenido 3', 'descripcion3');  
+--4. Modificar la tabla post, agregando la columna título. 
+alter table posts add column titulo varchar (255) not null default ' ';
+
+--5. Agregar título a las publicaciones ya ingresadas.
+update posts set titulo = 'titulo 1' where id=1;
+update posts set titulo = 'titulo 2' where id=2;
+update posts set titulo = 'titulo 3' where id=3;
+
+--6. Insertar 2 post para el usuario "Pedro".
+insert into posts (nombre_usuario, fecha_creacion , contenido , descripcion, titulo)
+  values ('Pedro', '2022-01-26', 'contenido 4', 'descripcion4','titulo4' );  
+  
+insert into posts (nombre_usuario, fecha_creacion , contenido , descripcion, titulo)
+  values ('Pedro', '2022-01-27', 'contenido 5', 'descripcion5','titulo5' );  
+  
+--7. Eliminar el post de Carlos.    
+delete from posts where nombre_usuario = 'Carlos';
+
+--8. Ingresar un nuevo post para el usuario "Carlos".
+insert into posts (nombre_usuario, fecha_creacion , contenido , descripcion, titulo)
+  values ('Carlos', '2022-01-20', 'contenido 3', 'descripcion3', 'titulo3');
+  
+  
+--1. Crear una nueva tabla llamada “comentarios”, con los atributos id, fecha, hora de creación y contenido, que se relacione con la tabla posts.  
+create table comentarios(
+  id serial primary key,
+  fecha_creacion date not null,
+  hora time not null,
+  post_id int not null,    
+  foreign key (post_id) references posts (id)
+);  
+
+--2. Crear 2 comentarios para el post de "Pamela" y 4 para "Carlos".
+insert into comentarios (fecha_creacion, hora, post_id, contenido)
+   values ('2022-01-02', '15:30', 1, 'contenido1');
+
+insert into comentarios (fecha_creacion, hora, post_id, contenido)
+   values ('2022-01-06', '15:40', 1 , 'contenido2');
+
+
+insert into comentarios (fecha_creacion, hora, post_id, contenido)
+   values ('2022-01-02', '15:20', 7, 'contenido1');
+insert into comentarios (fecha_creacion, hora, post_id, contenido)
+   values ('2022-01-04', '15:30', 7, 'contenido2');
+insert into comentarios (fecha_creacion, hora, post_id, contenido)
+   values ('2022-01-03', '15:34', 7, 'contenido3');
+insert into comentarios (fecha_creacion, hora, post_id, contenido)
+   values ('2022-01-02', '15:35', 7, 'contenido4');   
+
+--3. Crear un nuevo post para "Margarita".
+insert into posts (nombre_usuario, fecha_creacion , contenido , descripcion, titulo)
+  values ('Margarita', '2022-02-20', 'contenido 6', 'descripcion6', 'titulo6'); 
+
+--4. Ingresar 5 comentarios para el post de Margarita.
+insert into comentarios (fecha_creacion, hora, post_id, contenido)
+   values ('2022-01-02', '15:22', 8, 'contenido1');
+insert into comentarios (fecha_creacion, hora, post_id, contenido)
+   values ('2022-01-04', '15:32', 8, 'contenido2');
+insert into comentarios (fecha_creacion, hora, post_id, contenido)
+   values ('2022-01-03', '15:35', 8, 'contenido3');
+insert into comentarios (fecha_creacion, hora, post_id, contenido)
+   values ('2022-01-02', '15:36', 8, 'contenido4');  
+insert into comentarios (fecha_creacion, hora, post_id, contenido)
+   values ('2022-01-02', '15:38', 8, 'contenido5');  
+   
+select * from comentarios;   
+select * from posts;
+
+
+
+
+
+
+    
+  
+  
