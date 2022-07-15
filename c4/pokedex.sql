@@ -36,3 +36,11 @@ select COUNT (pokedex) AS total_pokes from pokemones;
 -- consulta para saber cuántos pokemones tienen como segundo
 -- tipo, el tipo roca en la tabla pokemones.
 select * from pokemones where tipo2 = 'roca';
+-- agrupar con funcion agregada count
+select tipo1, count (pokedex)
+from pokemones
+group by tipo1;
+-- agrupar con funcion agregada count
+select tipo1, count (pokedex)
+from pokemones
+group by tipo1;

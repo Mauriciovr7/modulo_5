@@ -1,0 +1,47 @@
+create table cars (
+    id serial primary key,
+    brand varchar(50) not null,
+    model varchar(50) not null,
+    year int not null,
+    color varchar(50) not null,
+    price money
+);
+
+create table ventas(
+    fecha date not null,
+    id_car int,
+    client varchar(50) not null,
+    reference varchar(50) not null,
+    amount varchar(50),
+    pay_method varchar(50) not null
+);
+
+-- mostrando datos ingresados
+select * from cars;
+
+-- mostrando datos ingresados
+select * from ventas;
+
+-- agregando llave foranea
+alter table ventas
+add foreign key (id_car) references cars (id)
+
+-- contando autos
+select model, count (model)
+from cars
+group by model;
+
+--juntando tablas con JOIN
+select brand from cars
+join ventas on cars.id = ventas.id_car; 
+
+--seleccionando con join
+select id, model 
+from cars
+join ventas on id = id_car;
+
+--usando exclusive left join
+select id, model 
+from cars
+left join ventas on id = id_car
+where id_car is null;
