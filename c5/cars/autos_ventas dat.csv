@@ -1,0 +1,8 @@
+"id","brand","model","year","color","price","fecha","id_car","client","reference","amount","pay_method"
+NULL,NULL,NULL,NULL,NULL,NULL,"2014-02-20",NULL,"Jackie Chan",12345,1350000,"credito"
+1,"Toyota","Corolla Araya",1991,"Blanco","$1.200.000","2020-10-15",1,"Chuck Norris",43224,NULL,"debito"
+3,"Chevrolet","Spark",1998,"Verde Oscuro","$1.200.000","2009-03-14",3,"Donnie Yen",12325,1500000,"credito"
+2,"Mazda","Mazda3",2003,"Azul","$2.000.000","2019-02-20",2,"Jet Li",54223,2000000,"debito"
+2,"Mazda","Mazda3",2003,"Azul","$2.000.000","2019-02-20",2,"Antonio Diaz",42312,1500000,"debito"
+5,"ferrari","Sport",2002,"Blanco","$50.000.000",NULL,NULL,NULL,NULL,NULL,NULL
+4,"Chery","Orinoco",2014,"Negro","$2.000.000",NULL,NULL,NULL,NULL,NULL,NULL
