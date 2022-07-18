@@ -28,11 +28,16 @@ join casts on id_cast = id_movie
 where movie = 'Titanic';
 
 -- 5. Consultar en cuántas películas del top 100 participa Harrison Ford.
+select count(actor)
+from casts
+join movies on id_cast = id_movie
+where actor = 'Harrison Ford' and id_movie <= 100;
 
 -- 6. Indicar las películas estrenadas entre los años 1990 y 1999 ordenadas por título
 -- de manera ascendente.
 select movie from movies
-where premiere between 1990 and 1999;
+where premiere between 1990 and 1999
+order by movie asc;
 
 -- 7. Hacer una consulta SQL que muestre los títulos con su longitud, la longitud debe
 -- ser nombrado para la consulta como “longitud_titulo”
@@ -41,3 +46,7 @@ from movies;
 
 -- 8. Consultar cual es la longitud más grande entre todos los títulos de las películas.
 select max(length(movie))from movies;
+-- otra forma , pero mas larga
+select length(movie) as longitud_titulo
+from movies
+order by longitud_titulo desc limit 1;
