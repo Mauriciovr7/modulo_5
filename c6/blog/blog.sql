@@ -44,7 +44,9 @@ where usuario_id is null;
 --● Listar todos los post con sus comentarios (incluyendo aquellos que no poseen
 --comentarios).
 select * from posts
-full join comentarios on id_post = post_id;
+left join comentarios on id_post = post_id;
+-- ó
+select * from posts full join comentarios on id_post = post_id;
 --● Listar todos los usuarios que hayan publicado un post en Junio.
 select * from usuarios
 join posts on id_usuario = usuario_id
