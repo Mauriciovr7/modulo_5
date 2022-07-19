@@ -39,6 +39,8 @@ create table lista_productos(
     primary key (factura_numero,producto_id)
 );
 
+select * from clientes;
+
 -- 5. ¿Cuál es el nombre del cliente que realizó la compra más cara?
 select nombre from clientes
 join facturas on cliente_id = clientes.id
