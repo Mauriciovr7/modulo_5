@@ -1,5 +1,5 @@
-1,Mineral,con gas,2000,11,1
-2,Mineral,sin gas,2000,22,1
-3,Mineral,soft gas,2000,33,1
-4,Atun,en agua,4000,44,2
-5,Atun,en aceite,4000,55,2
+1,Aceite,mineral,200,11,1
+2,Aceite,sintetico,800,22,1
+3,Aceite,dielectrico,400,33,1
+4,Taladro,atornillador 18v,40000,44,2
+5,Taladro,inalambrico 20v,80000,55,2

@@ -40,21 +40,24 @@ create table lista_productos(
 );
 
 select * from clientes;
+select * from categorias;
+select * from productos;
+select * from facturas;
 
 -- 5. ¿Cuál es el nombre del cliente que realizó la compra más cara?
-select nombre from clientes
+select nombre, total from clientes
 join facturas on cliente_id = clientes.id
-where total > (select total from facturas);
+order by total desc limit 1;
 
 -- 6. ¿Cuáles son los nombres de los clientes que pagaron más de 60$? Considere un
 -- IVA del 19%
 select nombre from clientes
 join facturas on cliente_id = clientes.id
-where total > (select total from facturas where total > 60);
+where total > 60;
 
 -- 7. ¿Cuántos clientes han comprado más de 5 productos? Considere la cantidad por
 -- producto comprado.
-select sum(nombre) from clientes
+select count(id) from clientes
 join facturas on cliente_id = clientes.id
 join lista_productos on factura_numero = facturas.numero
 where cantidad > 5;
