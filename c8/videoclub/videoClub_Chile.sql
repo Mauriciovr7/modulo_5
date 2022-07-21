@@ -5,11 +5,13 @@ create table peliculas(
     anio int not null
 );
 
+drop table if exists clientes;
 create table clientes(
     rut varchar(12) not null  primary key,
     nombre varchar(255) not null
 );
 
+drop table if exists directores;
 create table directores(
     id serial primary key,
     nombre varchar (255) not null
@@ -25,6 +27,7 @@ create table alquileres(
 );
 
 -- tabla intermedia
+drop table if exists directores_peliculas;
 create table directores_peliculas(
     director_id int not null references directores(id) on delete cascade,
     pelicula_cod int not null references peliculas(cod) on delete cascade,    
@@ -38,27 +41,38 @@ values('Avatar', 2009),
       ('Avengers: Infinity war', 2018),
       ('Titanic', 1997),
       ('Avengers:Endgame', 2019); 
-       
+--       
 insert into directores(nombre)
 values('Russo,A.'),
       ('Russo,J.'),
       ('Cameron,J.'),
       ('Abrams,J.')
-
+--
 insert into clientes(rut,nombre)
 values('15.654.685-5', 'Gonzalez Gomez, Juan'),
       ('11.654.655-0', 'Juvenal Pereira, James'),
       ('05.584.685-k', 'Garcia Soto, Rosa'),
       ('10.111.685-7', 'Sanchez Molina, Ana')
-      
+--      
 insert into directores_peliculas(director_id, pelicula_cod)
-values(3,6), 
-      (4,7),
-      (1,8),
-      (2,8),
-      (3,9),
-      (1,10),
-      (2,10);
+values(3,1), 
+      (4,2),
+      (1,3),
+      (2,3),
+      (3,4),
+      (1,5),
+      (2,5);
+
+
+
+select * from peliculas;
+select * from directores;
+select * from clientes;
+select * from directores_peliculas;
+-- listado de peliculas y nombre director 
+select titulo, nombre from peliculas
+join directores_peliculas on peliculas.cod = pelicula_cod
+join directores on directores.id = director_id;
 
 -- transacciones
 begin transaction;
@@ -72,17 +86,9 @@ commit;
 
 rollback;
 
+select * from alquileres;
+
 -- forzamos eliminacion de datos de la tabla peliculas
 truncate peliculas cascade;
 
--- listado de peliculas y nombre director 
-select titulo, nombre
-from peliculas
-join directores_peliculas on peliculas.cod = pelicula_cod
-join directores on directores.id = director_id;
 
-select*from peliculas;
-select*from clientes;
-select*from directores;
-select*from alquileres;
-select*from directores_peliculas;
