@@ -30,8 +30,8 @@ create table alquileres(
 drop table if exists directores_peliculas;
 create table directores_peliculas(
     director_id int not null references directores(id) on delete cascade,
-    pelicula_cod int not null references peliculas(cod) on delete cascade,    
-    primary key (director_id, pelicula_cod)
+    dire_peli_cod int not null references peliculas(cod) on delete cascade,    
+    primary key (director_id, dire_peli_cod)
 );
 
 -- insertando datos de ejemplo
@@ -54,7 +54,7 @@ values('15.654.685-5', 'Gonzalez Gomez, Juan'),
       ('05.584.685-k', 'Garcia Soto, Rosa'),
       ('10.111.685-7', 'Sanchez Molina, Ana')
 --      
-insert into directores_peliculas(director_id, pelicula_cod)
+insert into directores_peliculas(director_id, dire_peli_cod)
 values(3,1), 
       (4,2),
       (1,3),
@@ -69,10 +69,35 @@ select * from peliculas;
 select * from directores;
 select * from clientes;
 select * from directores_peliculas;
+
 -- listado de peliculas y nombre director 
-select titulo, nombre from peliculas
-join directores_peliculas on peliculas.cod = pelicula_cod
-join directores on directores.id = director_id;
+select distinct titulo, nombre from peliculas
+join directores_peliculas on peliculas.cod = dire_peli_cod
+join directores on directores.id = director_id
+group by titulo, nombre
+order by titulo asc;
+-- cuantos dires tiene cada peli
+select titulo, count(nombre) from peliculas
+join directores_peliculas on peliculas.cod = dire_peli_cod
+join directores on directores.id = director_id
+group by titulo
+order by titulo asc;
+-- q pelis dirigió el dire Russo,A.
+select titulo from peliculas
+join directores_peliculas on peliculas.cod = dire_peli_cod
+join directores on directores.id = director_id
+where directores.nombre = 'Russo,A.'
+group by titulo
+order by titulo asc;
+
+-- 
+select cod, titulo as pelicula, directores.nombre as director, anio, clientes.nombre as cliente
+from peliculas
+join directores_peliculas on peliculas.cod = dire_peli_cod
+join directores on directores.id = director_id
+join alquileres on peliculas.cod = pelicula_cod
+join clientes on cliente_rut = clientes.rut
+order by titulo asc;
 
 -- transacciones
 begin transaction;
